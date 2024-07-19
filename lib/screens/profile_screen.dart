@@ -75,7 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             appBar: AppBar(
               backgroundColor: mobileBackgroundColor,
               title: Text(
-                userData['username'],
+                'Test',
               ),
               centerTitle: false,
             ),
@@ -90,7 +90,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           CircleAvatar(
                             backgroundColor: Colors.grey,
                             backgroundImage: NetworkImage(
-                              userData['photoUrl'],
+                              'Test',
                             ),
                             radius: 40,
                           ),
@@ -144,7 +144,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                       .followUser(
                                                     FirebaseAuth.instance
                                                         .currentUser!.uid,
-                                                    userData['uid'],
+                                                    'Test',
                                                   );
 
                                                   setState(() {
@@ -163,7 +163,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                       .followUser(
                                                     FirebaseAuth.instance
                                                         .currentUser!.uid,
-                                                    userData['uid'],
+                                                    'Test',
                                                   );
 
                                                   setState(() {
@@ -185,7 +185,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           top: 15,
                         ),
                         child: Text(
-                          userData['username'],
+                          'Test',
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
@@ -197,7 +197,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           top: 1,
                         ),
                         child: Text(
-                          userData['bio'],
+                          'Test',
                         ),
                       ),
                     ],
@@ -251,7 +251,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          num.toString(),
+          label,
           style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,

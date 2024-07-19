@@ -24,7 +24,6 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _bioController = TextEditingController();
   bool _isLoading = false;
-  Uint8List? _image;
 
   @override
   void dispose() {
@@ -45,8 +44,7 @@ class _SignupScreenState extends State<SignupScreen> {
         email: _emailController.text,
         password: _passwordController.text,
         username: _usernameController.text,
-        bio: _bioController.text,
-        file: _image!);
+        bio: _bioController.text);
     // if string returned is sucess, user has been created
     if (res == "success") {
       setState(() {
@@ -74,14 +72,6 @@ class _SignupScreenState extends State<SignupScreen> {
     }
   }
 
-  selectImage() async {
-    Uint8List im = await pickImage(ImageSource.gallery);
-    // set state because we need to display the image we selected on the circle avatar
-    setState(() {
-      _image = im;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,30 +94,6 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               const SizedBox(
                 height: 64,
-              ),
-              Stack(
-                children: [
-                  _image != null
-                      ? CircleAvatar(
-                          radius: 64,
-                          backgroundImage: MemoryImage(_image!),
-                          backgroundColor: Colors.red,
-                        )
-                      : const CircleAvatar(
-                          radius: 64,
-                          backgroundImage: NetworkImage(
-                              'https://i.stack.imgur.com/l60Hf.png'),
-                          backgroundColor: Colors.red,
-                        ),
-                  Positioned(
-                    bottom: -10,
-                    left: 80,
-                    child: IconButton(
-                      onPressed: selectImage,
-                      icon: const Icon(Icons.add_a_photo),
-                    ),
-                  )
-                ],
               ),
               const SizedBox(
                 height: 24,

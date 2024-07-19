@@ -4,6 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instagram_clone_flutter/utils/colors.dart';
 import 'package:instagram_clone_flutter/utils/global_variable.dart';
 import 'package:instagram_clone_flutter/widgets/post_card.dart';
+import 'package:instagram_clone_flutter/widgets/follow_button.dart';
+import 'package:instagram_clone_flutter/resources/auth_methods.dart';
+import 'package:instagram_clone_flutter/screens/login_screen.dart';
 
 class FeedScreen extends StatefulWidget {
   const FeedScreen({Key? key}) : super(key: key);
@@ -31,6 +34,22 @@ class _FeedScreenState extends State<FeedScreen> {
                 height: 32,
               ),
               actions: [
+                FollowButton(
+                  text: 'Sign Out',
+                  backgroundColor: mobileBackgroundColor,
+                  textColor: primaryColor,
+                  borderColor: Colors.grey,
+                  function: () async {
+                    await AuthMethods().signOut();
+                    if (context.mounted) {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ),
+                      );
+                    }
+                  },
+                ),
                 IconButton(
                   icon: const Icon(
                     Icons.messenger_outline,
@@ -49,6 +68,22 @@ class _FeedScreenState extends State<FeedScreen> {
               child: CircularProgressIndicator(),
             );
           }
+          FollowButton(
+            text: 'Sign Out',
+            backgroundColor: mobileBackgroundColor,
+            textColor: primaryColor,
+            borderColor: Colors.grey,
+            function: () async {
+              await AuthMethods().signOut();
+              if (context.mounted) {
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) => const LoginScreen(),
+                  ),
+                );
+              }
+            },
+          );
           return ListView.builder(
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (ctx, index) => Container(
